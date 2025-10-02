@@ -91,7 +91,7 @@ La conexión a la base de datos está configurada en la clase `data.DatabaseConn
 - **Puerto**: 3306
 - **Base de datos**: crudPersona
 - **Usuario**: root
-- **Contraseña**: Carlonitos02
+- **Contraseña**: *****
 
 Si necesitas cambiar estos valores, modifica las constantes en la clase `DatabaseConnection`.
 
