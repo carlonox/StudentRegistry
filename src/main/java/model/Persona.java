@@ -1,16 +1,16 @@
 /**
- * Clase que representa una Persona en el sistema.
+ * Class that represents a Person in the system.
  * 
- * Esta clase es un modelo de datos que contiene la información de una persona
- * y proporciona métodos para acceder y modificar dicha información.
- * Incluye atributos como identificación, nombre, apellido, facultad aspirada,
- * puntaje y estado de admisión.
+ * This class is a data model that holds a person's information
+ * and provides methods to access and modify that information.
+ * It includes attributes such as identification, first name, last name,
+ * target faculty, score, and admission status.
  */
 package model;
 
 
 public class Persona {
-    // Atributos de la clase Persona
+    // Attributes of the Persona class
     private int idPersona;
     private String facultadAspirada;
     private String nombre;
@@ -20,21 +20,21 @@ public class Persona {
     private String dni;
     
     /**
-     * Constructor por defecto de la clase Persona.
+     * Default constructor of the Persona class.
      */
     public Persona() {
     }
     
     /**
-     * Constructor parametrizado de la clase Persona.
+     * Parameterized constructor of the Persona class.
      * 
-     * @param idPersona Identificador único de la persona
-     * @param dni Documento Nacional de Identidad de la persona
-     * @param nombre Nombre de la persona
-     * @param apellido Apellido de la persona
-     * @param facultad Facultad a la que aspira la persona
-     * @param puntaje Puntaje obtenido por la persona
-     * @param admitido Estado de admisión de la persona
+     * @param idPersona Unique identifier of the person
+     * @param dni National identity document number of the person
+     * @param nombre First name of the person
+     * @param apellido Last name of the person
+     * @param facultad Faculty the person is applying to
+     * @param puntaje Score obtained by the person
+     * @param admitido Admission status of the person
      */
     public Persona(int idPersona, String dni, String nombre, String apellido, String  facultad,int puntaje, String admitido) {
         this.idPersona = idPersona;
@@ -46,9 +46,9 @@ public class Persona {
     }
     
     /**
-     * Establece el estado de admisión de la persona.
+     * Sets the admission status of the person.
      * 
-     * @param admitido Estado de admisión (por ejemplo, "Sí" o "No")
+     * @param admitido Admission status (for example, "SI" or "NO")
      */
     public void setAdmitido(String admitido)
     {
@@ -56,9 +56,9 @@ public class Persona {
     }
     
     /**
-     * Obtiene el estado de admisión de la persona.
+     * Returns the admission status of the person.
      * 
-     * @return Estado de admisión de la persona
+     * @return Admission status of the person
      */
     public String getAdmitido()
     {
@@ -66,27 +66,27 @@ public class Persona {
     }
     
     /**
-     * Obtiene el DNI de la persona.
+     * Returns the DNI of the person.
      * 
-     * @return DNI de la persona
+     * @return DNI of the person
      */
      public String getDni() {
         return dni;
     }
 
     /**
-     * Establece el DNI de la persona.
+     * Sets the DNI of the person.
      * 
-     * @param dni Documento Nacional de Identidad de la persona
+     * @param dni National identity document number of the person
      */
     public void setDni(String dni) {
         this.dni = dni;
     }
     
     /**
-     * Establece el identificador de la persona.
+     * Sets the identifier of the person.
      * 
-     * @param idPersona Identificador único de la persona
+     * @param idPersona Unique identifier of the person
      */
     public void setIdPersona(int idPersona) {
         this.idPersona = idPersona;
@@ -94,18 +94,18 @@ public class Persona {
     
     
     /**
-     * Obtiene el identificador de la persona.
+     * Returns the identifier of the person.
      * 
-     * @return Identificador único de la persona
+     * @return Unique identifier of the person
      */
     public int getIdPersona() {
         return idPersona;
     }
     
     /**
-     * Obtiene el puntaje de la persona.
+     * Returns the score of the person.
      * 
-     * @return Puntaje obtenido por la persona
+     * @return Score obtained by the person
      */
     public int getPuntaje()
     {
@@ -113,9 +113,9 @@ public class Persona {
     }
     
     /**
-     * Establece el puntaje de la persona.
+     * Sets the score of the person.
      * 
-     * @param puntaje Puntaje obtenido por la persona
+     * @param puntaje Score obtained by the person
      */
     public void setPuntaje(int puntaje)
     {
@@ -124,9 +124,9 @@ public class Persona {
 
 
     /**
-     * Obtiene la facultad a la que aspira la persona.
+     * Returns the faculty the person is applying to.
      * 
-     * @return Facultad aspirada por la persona
+     * @return Faculty the person is applying to
      */
     public String getFacultadAspirada()
     {
@@ -134,9 +134,9 @@ public class Persona {
     }
     
     /**
-     * Establece la facultad a la que aspira la persona.
+     * Sets the faculty the person is applying to.
      * 
-     * @param facultadAspirada Facultad a la que aspira la persona
+     * @param facultadAspirada Faculty the person is applying to
      */
     public void setFacultadAspirada(String facultadAspirada)
     {
@@ -144,9 +144,9 @@ public class Persona {
     }
     
     /**
-     * Obtiene el nombre de la persona.
+     * Returns the first name of the person.
      * 
-     * @return Nombre de la persona
+     * @return First name of the person
      */
     public String getNombre()
     {
@@ -155,9 +155,9 @@ public class Persona {
     }
     
     /**
-     * Establece el nombre de la persona.
+     * Sets the first name of the person.
      * 
-     * @param nombre Nombre de la persona
+     * @param nombre First name of the person
      */
     public void setNombre(String nombre)
     {
@@ -166,9 +166,9 @@ public class Persona {
     }
     
     /**
-     * Obtiene el apellido de la persona.
+     * Returns the last name of the person.
      * 
-     * @return Apellido de la persona
+     * @return Last name of the person
      */
     public String getApellido()
     {
@@ -177,9 +177,9 @@ public class Persona {
     }
     
     /**
-     * Establece el apellido de la persona.
+     * Sets the last name of the person.
      * 
-     * @param apellido Apellido de la persona
+     * @param apellido Last name of the person
      */
     public void setApellido(String apellido)
     {

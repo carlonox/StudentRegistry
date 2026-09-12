@@ -1,49 +1,49 @@
-# StudentRegistry - Sistema de Gestión de Estudiantes
+# StudentRegistry - Student Management System
 
 ![Java](https://img.shields.io/badge/Java-11%2B-blue)
 ![MySQL](https://img.shields.io/badge/MySQL-8.0%2B-blue)
 ![Maven](https://img.shields.io/badge/Maven-3.6%2B-blue)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
-## 📋 Descripción
+## Description
 
-StudentRegistry es una aplicación de escritorio Java que implementa un sistema CRUD completo para la gestión de estudiantes. Permite registrar, consultar, actualizar y eliminar información de personas en una base de datos MySQL, con un sistema automatizado de admisión basado en puntajes.
+StudentRegistry is a Java desktop application that implements a complete CRUD system for student management. It allows registering, querying, updating, and deleting people's information in a MySQL database, with an automated admission system based on test scores.
 
-### ✨ Características Principales
+### Features
 
-- 🖥️ **Interfaz gráfica intuitiva** desarrollada con Java Swing
-- 📊 **Gestión completa de estudiantes** (alta, baja, modificación y consulta)
-- 🤖 **Sistema de admisión automática** según puntaje y facultad
-- 🗄️ **Conexión a base de datos MySQL** con manejo de conexiones
-- ✅ **Validación de datos** y manejo de errores
-- 🧱 **Arquitectura en capas** (MVC) para mejor mantenibilidad
+- **Intuitive graphical interface** built with Java Swing
+- **Full student management** (create, update, and delete records, plus queries)
+- **Automatic admission system** based on score and faculty
+- **MySQL database connection** with connection handling
+- **Data validation** and error handling
+- **Layered architecture** (MVC) for easier maintenance
 
-## 🚀 Comenzando
+## Getting Started
 
-### 📋 Requisitos Previos
+### Prerequisites
 
-- **Java 11** o superior
-- **MySQL 8.0** o superior
-- **Maven 3.6** o superior
+- **Java 11** or later
+- **MySQL 8.0** or later
+- **Maven 3.6** or later
 
-### 🔧 Instalación de MySQL
+### Installing MySQL
 
-#### En Windows:
-1. Descarga MySQL Community Server desde [https://dev.mysql.com/downloads/mysql/](https://dev.mysql.com/downloads/mysql/)
-2. Ejecuta el instalador y sigue las instrucciones
-3. Durante la instalación, asegúrate de:
-   - Seleccionar "Server only" o "Developer Default"
-   - Configurar el usuario root con una contraseña
-   - Iniciar el servicio de MySQL automáticamente
+#### On Windows:
+1. Download MySQL Community Server from [https://dev.mysql.com/downloads/mysql/](https://dev.mysql.com/downloads/mysql/)
+2. Run the installer and follow the instructions
+3. During the installation, make sure to:
+   - Select "Server only" or "Developer Default"
+   - Set a password for the root user
+   - Start the MySQL service automatically
 
-#### En macOS:
+#### On macOS:
 ```bash
-# Usando Homebrew
+# Using Homebrew
 brew install mysql
 brew services start mysql
 ```
 
-#### En Linux (Ubuntu/Debian):
+#### On Linux (Ubuntu/Debian):
 ```bash
 sudo apt update
 sudo apt install mysql-server
@@ -51,28 +51,28 @@ sudo systemctl start mysql
 sudo systemctl enable mysql
 ```
 
-## ⚙️ Configuración
+## Configuration
 
-### 1. Configuración de la Base de Datos
+### 1. Database Setup
 
-1. Asegúrate de que MySQL esté instalado y en ejecución.
+1. Make sure MySQL is installed and running.
 
-2. **Opción 1 - Usando SQL Tools en VS Code:**
-   - Abre VS Code en la carpeta del proyecto
-   - Presiona `Ctrl+Shift+P` y busca "SQLTools: Connect"
-   - Selecciona la conexión "MySQL-crudPersona"
-   - Una vez conectado, abre el archivo `create_database.sql`
-   - Presiona `Ctrl+Shift+P` y busca "SQLTools: Execute Query" para ejecutar el script
+2. **Option 1 - Using SQL Tools in VS Code:**
+   - Open VS Code in the project folder
+   - Press `Ctrl+Shift+P` and search for "SQLTools: Connect"
+   - Select the "MySQL-crudPersona" connection
+   - Once connected, open the `create_database.sql` file
+   - Press `Ctrl+Shift+P` and search for "SQLTools: Execute Query" to run the script
 
-3. **Opción 2 - Usando comandos de MySQL:**
+3. **Option 2 - Using MySQL commands:**
    ```sql
-   -- Crear la base de datos
+   -- Create the database
    CREATE DATABASE IF NOT EXISTS crudPersona;
    
-   -- Usar la base de datos
+   -- Use the database
    USE crudPersona;
    
-   -- Crear la tabla persona
+   -- Create the persona table
    CREATE TABLE IF NOT EXISTS persona (
        idPersona INT AUTO_INCREMENT PRIMARY KEY,
        dni VARCHAR(20) UNIQUE NOT NULL,
@@ -84,58 +84,58 @@ sudo systemctl enable mysql
    );
    ```
 
-### 2. Configuración del Proyecto
+### 2. Project Setup
 
-La conexión a la base de datos está configurada en la clase `data.DatabaseConnection` con los siguientes parámetros por defecto:
+The database connection is configured in the `data.DatabaseConnection` class with the following default parameters:
 - **Host**: localhost
-- **Puerto**: 3306
-- **Base de datos**: crudPersona
-- **Usuario**: root
-- **Contraseña**: *****
+- **Port**: 3306
+- **Database**: crudPersona
+- **User**: root
+- **Password**: *****
 
-Si necesitas cambiar estos valores, modifica las constantes en la clase `DatabaseConnection`.
+If you need to change these values, edit the constants in the `DatabaseConnection` class.
 
-## 📦 Compilación y Ejecución
+## Build and Run
 
-### Compilación
+### Build
 ```bash
 mvn clean compile
 ```
 
-### Ejecución
+### Run
 ```bash
 mvn exec:java -Dexec.mainClass="presentation.PersonaFrame"
 ```
 
-### Crear JAR ejecutable
+### Create an executable JAR
 ```bash
 mvn clean package
 java -jar target/StudentRegistry-1.0.0-jar-with-dependencies.jar
 ```
 
-## 🎮 Uso de la Aplicación
+## Using the Application
 
-1. Al iniciar la aplicación, verás una interfaz gráfica con campos para ingresar datos de una persona:
-   - **DNI**: Documento Nacional de Identidad único
-   - **Nombres**: Nombre completo de la persona
-   - **Apellidos**: Apellido completo de la persona
-   - **Facultad**: Facultad a la que aspira (Ingenieria, Artes, Tecnologica, Medio_Ambiente, Ciencias)
-   - **Puntaje**: Puntaje obtenido en las pruebas
+1. When the application starts, you will see a graphical interface with fields for entering a person's data:
+   - **DNI**: Unique national identity document number
+   - **First name**: Person's first name
+   - **Last name**: Person's last name
+   - **Faculty**: Faculty the person is applying to (Ingenieria, Artes, Tecnologica, Medio_Ambiente, Ciencias)
+   - **Score**: Score obtained in the admission tests
 
-2. **Funcionalidades disponibles:**
-   - **Guardar**: Registra una nueva persona en la base de datos. El sistema determinará automáticamente si es admitido según el puntaje y la facultad.
-   - **Editar**: Busca una persona por DNI y carga sus datos para edición.
-   - **Actualizar**: Guarda los cambios realizados a una persona existente.
-   - **Eliminar**: Borra un registro de persona de la base de datos.
+2. **Available actions:**
+   - **Save**: Registers a new person in the database. The system automatically determines whether the person is admitted based on score and faculty.
+   - **Edit**: Looks up a person by DNI and loads their data for editing.
+   - **Update**: Saves changes made to an existing person.
+   - **Delete**: Removes a person record from the database.
 
-3. **Sistema de Admisión Automática:**
-   - **Ingeniería**: Requiere puntaje mínimo de 350
-   - **Artes**: Requiere puntaje mínimo de 350
-   - **Tecnológica**: Requiere puntaje mínimo de 280
-   - **Medio Ambiente**: Requiere puntaje mínimo de 300
-   - **Ciencias**: Requiere puntaje mínimo de 320
+3. **Automatic Admission System:**
+   - **Ingenieria**: Requires a minimum score of 350
+   - **Artes**: Requires a minimum score of 350
+   - **Tecnologica**: Requires a minimum score of 280
+   - **Medio Ambiente**: Requires a minimum score of 300
+   - **Ciencias**: Requires a minimum score of 320
 
-## 🏗️ Arquitectura del Proyecto
+## Project Architecture
 
 ```
 src/
@@ -143,65 +143,65 @@ src/
 │   ├── java/
 │   │   ├── data/
 │   │   │   ├── interfaces/
-│   │   │   │   └── PersonaInterface.java      # Interfaz para operaciones CRUD
-│   │   │   └── PersonaDAO.java                # Implementación de operaciones CRUD
-│   │   │   └── DatabaseConnection.java        # Gestión de conexión a la base de datos
+│   │   │   │   └── PersonaInterface.java      # Interface for CRUD operations
+│   │   │   └── PersonaDAO.java                # CRUD operation implementation
+│   │   │   └── DatabaseConnection.java        # Database connection handling
 │   │   ├── model/
-│   │   │   └── Persona.java                   # Modelo de datos de Persona
+│   │   │   └── Persona.java                   # Person data model
 │   │   ├── presentation/
-│   │   │   └── PersonaFrame.java              # Interfaz gráfica de usuario
+│   │   │   └── PersonaFrame.java              # Graphical user interface
 │   │   └── service/
-│   │       └── PersonaService.java            # Lógica de negocio y servicios
+│   │       └── PersonaService.java            # Business logic and services
 │   └── resources/
 └── test/
     └── java/
 ```
 
-### Descripción de Componentes:
-- **data/**: Capa de acceso a datos que maneja la interacción con la base de datos MySQL
-- **data/interfaces/**: Define contratos para operaciones CRUD
-- **model/**: Clases que representan entidades del dominio
-- **presentation/**: Interfaz gráfica de usuario
-- **service/**: Lógica de negocio y coordinación entre capas
+### Component Overview:
+- **data/**: Data access layer that handles interaction with the MySQL database
+- **data/interfaces/**: Defines contracts for CRUD operations
+- **model/**: Classes that represent domain entities
+- **presentation/**: Graphical user interface
+- **service/**: Business logic and coordination between layers
 
-## 🛠️ Resolución de Problemas
+## Troubleshooting
 
-### Error de Conexión a la Base de Datos
-Si recibes un error de conexión, verifica:
-1. Que MySQL esté en ejecución.
-2. Que los parámetros de conexión en `DatabaseConnection.java` sean correctos.
-3. Que la base de datos `crudPersona` exista.
-4. Que el usuario `root` tenga permisos adecuados.
+### Database Connection Error
+If you get a connection error, check:
+1. That MySQL is running.
+2. That the connection parameters in `DatabaseConnection.java` are correct.
+3. That the `crudPersona` database exists.
+4. That the `root` user has the appropriate permissions.
 
-### Error con SQL Tools en VS Code
-Si al intentar conectar con SQL Tools recibes un error como "Error opening connection", prueba lo siguiente:
-1. Asegúrate de que MySQL esté en ejecución
-2. Verifica que el puerto 3306 esté disponible y no bloqueado por el firewall
-3. Intenta conectarte usando los comandos de MySQL directamente en lugar de SQL Tools
-4. Si el problema persiste, puedes ejecutar el script `create_database.sql` directamente en la línea de comandos de MySQL:
+### Error with SQL Tools in VS Code
+If you get an error such as "Error opening connection" when you try to connect with SQL Tools, try the following:
+1. Make sure MySQL is running
+2. Check that port 3306 is available and not blocked by the firewall
+3. Try connecting using the MySQL commands directly instead of SQL Tools
+4. If the problem persists, you can run the `create_database.sql` script directly from the MySQL command line:
    ```bash
    mysql -u root -p < create_database.sql
    ```
 
-### Error de Driver MySQL
-Si hay problemas con el driver de MySQL, asegúrate de que la dependencia esté correctamente declarada en el `pom.xml`.
+### MySQL Driver Error
+If there are problems with the MySQL driver, make sure the dependency is correctly declared in the `pom.xml`.
 
-## 🤝 Contribuciones
+## Contributing
 
-Las contribuciones son bienvenidas. Para cambios importantes, por favor abre un issue primero para discutir lo que te gustaría cambiar.
+Contributions are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-1. Haz un fork del proyecto
-2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
-3. Realiza tus cambios (`git commit -m 'Add some AmazingFeature'`)
-4. Haz push a la rama (`git push origin feature/AmazingFeature`)
-5. Abre un Pull Request
+1. Fork the project
+2. Create a branch for your feature (`git checkout -b feature/AmazingFeature`)
+3. Make your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-## 📄 Licencia
+## License
 
-Este proyecto está licenciado bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para más detalles.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 👤 Contacto
+## Contact
 
 **Carlos Cuervo** - [@carlonox](https://github.com/carlonox)
 
-Link del proyecto: [https://github.com/carlonox/StudentRegistry](https://github.com/carlonox/StudentRegistry)
+Project link: [https://github.com/carlonox/StudentRegistry](https://github.com/carlonox/StudentRegistry)

@@ -1,10 +1,10 @@
 /**
- * Clase que proporciona servicios para la gestión de personas en el sistema.
+ * Class that provides services for managing people in the system.
  * 
- * Esta clase actúa como una capa intermedia entre la interfaz de usuario y
- * la capa de acceso a datos. Contiene métodos para insertar, mostrar, buscar,
- * actualizar y eliminar personas, así como para determinar la admisión según
- * la facultad y el puntaje.
+ * This class acts as an intermediate layer between the user interface and
+ * the data access layer. It contains methods to insert, display, look up,
+ * update, and delete people, as well as to determine admission based on
+ * faculty and score.
  */
 package service;
 
@@ -16,16 +16,16 @@ import javax.swing.table.DefaultTableModel;
 
 public class PersonaService {
     
-    // Objetos para acceder a los datos y manejar personas
+    // Objects for accessing the data and managing people
     PersonaDAO datos;
     Persona persona;
     
-    // Modelo para la tabla de la interfaz gráfica
+    // Model for the table in the graphical interface
     DefaultTableModel modelo;
     
     /**
-     * Constructor de la clase PersonaService.
-     * Inicializa los objetos necesarios para el funcionamiento del servicio.
+     * Constructor of the PersonaService class.
+     * Initializes the objects required for the service to work.
      */
     public PersonaService(){
         datos = new PersonaDAO();
@@ -33,15 +33,15 @@ public class PersonaService {
     }
     
     /**
-     * Inserta una nueva persona en el sistema.
+     * Inserts a new person into the system.
      * 
-     * @param dni Documento Nacional de Identidad de la persona
-     * @param puntaje Puntaje obtenido por la persona
-     * @param nombre Nombre de la persona
-     * @param apellido Apellido de la persona
-     * @param facultad Facultad a la que aspira la persona
-     * @param admitido Estado de admisión de la persona
-     * @return "OK" si la inserción fue exitosa, mensaje de error en caso contrario
+     * @param dni National identity document number of the person
+     * @param puntaje Score obtained by the person
+     * @param nombre First name of the person
+     * @param apellido Last name of the person
+     * @param facultad Faculty the person is applying to
+     * @param admitido Admission status of the person
+     * @return "OK" if the insertion was successful, an error message otherwise
      */
     public String insertar(String dni,int puntaje, String nombre, String apellido, String facultad,String admitido){
         
@@ -57,21 +57,21 @@ public class PersonaService {
         if (datos.insertar(persona)) {
             return "OK";
         }else{
-            return "Ocurrio un error en el registro";
+            return "An error occurred while saving the record";
         }
     }
     
     /**
-     * Obtiene y formatea los datos de todas las personas para mostrar en una tabla.
+     * Retrieves and formats the data of all people for display in a table.
      * 
-     * @return DefaultTableModel con los datos de las personas
+     * @return DefaultTableModel with the people's data
      */
     public DefaultTableModel mostrar(){
         List<Persona> lista = new ArrayList<>();
         
         lista.addAll(datos.listar());
         
-        String[] title = {"idPersona", "Dni","Nombre", "Apellido", "Facultad", "Puntaje","Admitido"};
+        String[] title = {"idPersona", "DNI","First name", "Last name", "Faculty", "Score","Admitted"};
         modelo = new DefaultTableModel(null, title);
         
         String[] registro = new String[7];
@@ -93,10 +93,10 @@ public class PersonaService {
     }
     
     /**
-     * Busca una persona por su DNI.
+     * Looks up a person by DNI.
      * 
-     * @param dni DNI de la persona a buscar
-     * @return Objeto Persona encontrado, o null si no se encuentra
+     * @param dni DNI of the person to look up
+     * @return Persona object found, or null if not found
      */
     public Persona buscar(String dni){
         persona = datos.buscar(dni);
@@ -104,39 +104,39 @@ public class PersonaService {
     }
     
     /**
-     * Actualiza la información de una persona existente.
+     * Updates the information of an existing person.
      * 
-     * @param persona Persona con la información actualizada
-     * @return "OK" si la actualización fue exitosa, mensaje de error en caso contrario
+     * @param persona Persona with the updated information
+     * @return "OK" if the update was successful, an error message otherwise
      */
     public String actualizar(Persona persona){
         if (datos.actualizar(persona)) {
             return "OK";
         }else{
-            return "Ocurrio un error al actualizar";
+            return "An error occurred while updating the record";
         }
     }
     
     /**
-     * Elimina una persona del sistema por su DNI.
+     * Deletes a person from the system by DNI.
      * 
-     * @param dni DNI de la persona a eliminar
-     * @return "OK" si la eliminación fue exitosa, mensaje de error en caso contrario
+     * @param dni DNI of the person to delete
+     * @return "OK" if the deletion was successful, an error message otherwise
      */
     public String eliminar(String dni){
         if (datos.eliminar(dni)) {
             return "OK";
         }else{
-            return "Ocurrio un error al eliminar";
+            return "An error occurred while deleting the record";
         }
     }
     
     /**
-     * Determina si una persona es admitida según la facultad y el puntaje.
+     * Determines whether a person is admitted based on faculty and score.
      * 
-     * @param facultad Facultad a la que aspira la persona
-     * @param puntaje Puntaje obtenido por la persona
-     * @return "SI" si es admitido, "NO" si no es admitido
+     * @param facultad Faculty the person is applying to
+     * @param puntaje Score obtained by the person
+     * @return "SI" if admitted, "NO" otherwise
      */
     public String SelectorFacultad(String facultad,int puntaje)
     {
@@ -169,7 +169,7 @@ public class PersonaService {
 
            
         default: 
-            System.out.println("Sede Introducida, incorrecta");
+            System.out.println("Invalid faculty entered");
         }    
         
              return adm;
@@ -177,10 +177,10 @@ public class PersonaService {
     }
     
     /**
-     * Verifica si una persona es admitida en la facultad de Ingeniería según su puntaje.
+     * Checks whether a person is admitted to the Ingenieria faculty based on their score.
      * 
-     * @param puntaje Puntaje obtenido por la persona
-     * @return "SI" si es admitido (puntaje >= 350), "NO" si no es admitido
+     * @param puntaje Score obtained by the person
+     * @return "SI" if admitted (score >= 350), "NO" otherwise
      */
     public static String VerificadorIngenieria(int puntaje)
     {   
@@ -199,10 +199,10 @@ public class PersonaService {
     }
     
     /**
-     * Verifica si una persona es admitida en la facultad de Artes según su puntaje.
+     * Checks whether a person is admitted to the Artes faculty based on their score.
      * 
-     * @param puntaje Puntaje obtenido por la persona
-     * @return "SI" si es admitido (puntaje >= 350), "NO" si no es admitido
+     * @param puntaje Score obtained by the person
+     * @return "SI" if admitted (score >= 350), "NO" otherwise
      */
     public static String VerificadorArtes(int puntaje)
     {String estado;
@@ -218,10 +218,10 @@ public class PersonaService {
     }
     
     /**
-     * Verifica si una persona es admitida en la facultad Tecnológica según su puntaje.
+     * Checks whether a person is admitted to the Tecnologica faculty based on their score.
      * 
-     * @param puntaje Puntaje obtenido por la persona
-     * @return "SI" si es admitido (puntaje >= 280), "NO" si no es admitido
+     * @param puntaje Score obtained by the person
+     * @return "SI" if admitted (score >= 280), "NO" otherwise
      */
     public static String VerificadorTecnologica(int puntaje)
     {String estado;
@@ -237,10 +237,10 @@ public class PersonaService {
     }
     
     /**
-     * Verifica si una persona es admitida en la facultad de Medio Ambiente según su puntaje.
+     * Checks whether a person is admitted to the Medio Ambiente faculty based on their score.
      * 
-     * @param puntaje Puntaje obtenido por la persona
-     * @return "SI" si es admitido (puntaje >= 300), "NO" si no es admitido
+     * @param puntaje Score obtained by the person
+     * @return "SI" if admitted (score >= 300), "NO" otherwise
      */
     public static String VerificadorMedioAmbiente(int puntaje)
     {String estado;
@@ -256,10 +256,10 @@ public class PersonaService {
     }
     
     /**
-     * Verifica si una persona es admitida en la facultad de Ciencias según su puntaje.
+     * Checks whether a person is admitted to the Ciencias faculty based on their score.
      * 
-     * @param puntaje Puntaje obtenido por la persona
-     * @return "SI" si es admitido (puntaje >= 320), "NO" si no es admitido
+     * @param puntaje Score obtained by the person
+     * @return "SI" if admitted (score >= 320), "NO" otherwise
      */
     public static String VerificadorCiencias(int puntaje)
     {String estado;

@@ -6,12 +6,12 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
- * Clase que gestiona la conexión a la base de datos MySQL.
- * Implementa el patrón Singleton para asegurar una única conexión a la base de datos.
+ * Handles the connection to the MySQL database.
+ * Implements the Singleton pattern to ensure a single database connection.
  */
 public class DatabaseConnection {
     
-   // Parámetros de conexión a la base de datos
+   // Database connection parameters
    private static final String HOST="localhost";
    
    private static final String PUERTO ="3306";
@@ -24,40 +24,40 @@ public class DatabaseConnection {
    
    private static String url;
    
-   // Objeto de conexión a la base de datos
+   // Database connection object
    private static Connection conexion = null;
     
    /**
-    * Obtiene una conexión a la base de datos.
-    * Si no existe una conexión activa o está cerrada, crea una nueva.
+    * Returns a connection to the database.
+    * If there is no active connection or it is closed, a new one is created.
     * 
-    * @return Connection objeto de conexión a la base de datos
+    * @return Connection database connection object
     */
    public static Connection getConexion() {
-       // Si no hay conexión o la conexión está cerrada, crear una nueva
+       // If there is no connection or the connection is closed, create a new one
        try {
            if (conexion == null || conexion.isClosed()) {
-               // Cargar el driver de MySQL
+               // Load the MySQL driver
                Class.forName("com.mysql.cj.jdbc.Driver");
                
-               // Construir la URL de conexión
+               // Build the connection URL
                url = "jdbc:mysql://" + HOST + ":" + PUERTO + "/" + DB + 
                      "?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
                
-               // Establecer la conexión con la base de datos
+               // Establish the connection to the database
                conexion = DriverManager.getConnection(url, USER, PASSWORD);
-               System.out.println("Conexión establecida correctamente");
+               System.out.println("Connection established successfully");
            }
        } catch (ClassNotFoundException e) {
-           System.out.println("Error: No se encontró el driver de MySQL");
+           System.out.println("Error: MySQL driver not found");
            e.printStackTrace();
        } catch (SQLException e) {
-           System.out.println("Error: No se pudo establecer la conexión con la base de datos");
+           System.out.println("Error: Could not connect to the database");
            System.out.println("URL: " + url);
-           System.out.println("Usuario: " + USER);
+           System.out.println("User: " + USER);
            e.printStackTrace();
        } catch (Exception e) {
-           System.out.println("Error desconocido al establecer la conexión");
+           System.out.println("Unknown error while establishing the connection");
            e.printStackTrace();
        }
        
@@ -65,30 +65,30 @@ public class DatabaseConnection {
    }
    
    /**
-    * Cierra la conexión a la base de datos si está abierta.
+    * Closes the database connection if it is open.
     */
    public static void cerrarConexion() {
        try {
            if (conexion != null && !conexion.isClosed()) {
                conexion.close();
-               System.out.println("Conexión cerrada correctamente");
+               System.out.println("Connection closed successfully");
            }
        } catch (SQLException e) {
-           System.out.println("Error al cerrar la conexión");
+           System.out.println("Error closing the connection");
            e.printStackTrace();
        }
    }
    
-   //Metodo para verificar conexion
+   // Method to verify the connection
    /*
    public static void main(String[]args)
    {
      if (getConexion()!=null)  
       {
-         System.out.println("conexion exitosa");
-       
+         System.out.println("successful connection");
+      
       } 
-     
+    
     } */      
    
 }

@@ -1,9 +1,9 @@
 /**
- * Clase que implementa la interfaz PersonaInterface para realizar operaciones
- * CRUD (Create, Read, Update, Delete) en la base de datos para objetos Persona.
+ * Class that implements the PersonaInterface with CRUD
+ * (Create, Read, Update, Delete) operations on Persona objects in the database.
  * 
- * Esta clase se encarga de la interacción directa con la base de datos MySQL
- * utilizando prepared statements para prevenir inyecciones SQL.
+ * This class handles direct interaction with the MySQL database
+ * using prepared statements to prevent SQL injection.
  */
 package data;
 
@@ -18,16 +18,16 @@ import java.util.ArrayList;
 
 public class PersonaDAO implements PersonaInterface {
 
-    // Objetos para ejecutar sentencias SQL y manejar resultados
+    // Objects for running SQL statements and handling results
     PreparedStatement ps;
     ResultSet rs;
     
     
     /**
-     * Inserta una nueva persona en la base de datos.
+     * Inserts a new person into the database.
      * 
-     * @param obj Persona a insertar
-     * @return true si la inserción fue exitosa, false en caso contrario
+     * @param obj Persona to insert
+     * @return true if the insertion was successful, false otherwise
      */
     @Override
     public boolean insertar(Persona obj) {
@@ -35,7 +35,7 @@ public class PersonaDAO implements PersonaInterface {
         boolean resp = false;
         
         try{
-           // Sentencia SQL para insertar una nueva persona
+           // SQL statement to insert a new person
            String sql = "insert into persona(dni, nombre, apellido, facultad, puntaje, admitido) values(?,?,?,?,?,?)";
             
            ps = DatabaseConnection.getConexion().prepareStatement(sql);
@@ -46,7 +46,7 @@ public class PersonaDAO implements PersonaInterface {
            ps.setInt(5,obj.getPuntaje());
            ps.setString(6,obj.getAdmitido());
            
-           // Ejecutar la inserción y verificar si fue exitosa
+           // Run the insertion and check whether it was successful
            if(ps.executeUpdate()>0)
            {
                resp=true;
@@ -64,9 +64,9 @@ public class PersonaDAO implements PersonaInterface {
     }
 
     /**
-     * Obtiene una lista de todas las personas almacenadas en la base de datos.
+     * Returns a list of all the people stored in the database.
      * 
-     * @return Lista de objetos Persona
+     * @return List of Persona objects
      */
     @Override
     public List<Persona> listar() {
@@ -76,13 +76,13 @@ public class PersonaDAO implements PersonaInterface {
         try
         {
             
-           // Consulta SQL para obtener todas las personas
+           // SQL query to retrieve all people
            String consulta="select * from persona";
            ps = DatabaseConnection.getConexion().prepareStatement(consulta);
             
            rs = ps.executeQuery();
            
-           // Recorrer los resultados y crear objetos Persona
+           // Iterate over the results and build Persona objects
            while (rs.next())
            {
                int idPersona = rs.getInt(1);
@@ -111,10 +111,10 @@ public class PersonaDAO implements PersonaInterface {
     }
 
     /**
-     * Busca una persona en la base de datos por su DNI.
+     * Looks up a person in the database by DNI.
      * 
-     * @param dniPersona DNI de la persona a buscar
-     * @return Objeto Persona encontrado, o null si no se encuentra
+     * @param dniPersona DNI of the person to look up
+     * @return Persona object found, or null if not found
      */
     @Override
     public Persona buscar(String dniPersona) {
@@ -123,14 +123,14 @@ public class PersonaDAO implements PersonaInterface {
         
         try
         {
-            // Consulta SQL para buscar una persona por DNI
+            // SQL query to look up a person by DNI
             String consulta = "select * from persona where dni = ?";
             
             ps= DatabaseConnection.getConexion().prepareStatement(consulta);
             ps.setString(1, dniPersona);
             rs = ps.executeQuery();
             
-            // Si se encuentra la persona, crear el objeto Persona
+            // If the person is found, build the Persona object
             if(rs.next())
             {
                 
@@ -162,10 +162,10 @@ public class PersonaDAO implements PersonaInterface {
     }
 
     /**
-     * Actualiza la información de una persona existente en la base de datos.
+     * Updates the information of an existing person in the database.
      * 
-     * @param obj Persona con la información actualizada
-     * @return true si la actualización fue exitosa, false en caso contrario
+     * @param obj Persona with the updated information
+     * @return true if the update was successful, false otherwise
      */
     @Override
     public boolean actualizar(Persona obj) {
@@ -173,7 +173,7 @@ public class PersonaDAO implements PersonaInterface {
         boolean resp = false;
         
         try{
-            // Sentencia SQL para actualizar una persona existente
+            // SQL statement to update an existing person
             String update = "update persona set dni =?, nombre =?, apellido = ?, facultad = ?, puntaje = ? where idPersona = ?";
             
             ps = DatabaseConnection.getConexion().prepareStatement(update);
@@ -184,7 +184,7 @@ public class PersonaDAO implements PersonaInterface {
             ps.setInt(5, obj.getPuntaje());
             ps.setInt(6, obj.getIdPersona());
             
-            // Ejecutar la actualización y verificar si fue exitosa
+            // Run the update and check whether it was successful
             if (ps.executeUpdate()>0) 
             {
                 resp = true;
@@ -201,10 +201,10 @@ public class PersonaDAO implements PersonaInterface {
     }
 
     /**
-     * Elimina una persona de la base de datos por su DNI.
+     * Deletes a person from the database by DNI.
      * 
-     * @param dni DNI de la persona a eliminar
-     * @return true si la eliminación fue exitosa, false en caso contrario
+     * @param dni DNI of the person to delete
+     * @return true if the deletion was successful, false otherwise
      */
     @Override
     public boolean eliminar(String dni) {
@@ -212,13 +212,13 @@ public class PersonaDAO implements PersonaInterface {
        boolean resp = false;
         
         try {
-            // Sentencia SQL para eliminar una persona por DNI
+            // SQL statement to delete a person by DNI
             String delete = "delete from persona where dni = ?";
             ps = DatabaseConnection.getConexion().prepareStatement(delete);
             ps.setString(1, dni);
             
             
-            // Ejecutar la eliminación y verificar si fue exitosa
+            // Run the deletion and check whether it was successful
             if (ps.executeUpdate()>0) {
                 resp = true;
             }

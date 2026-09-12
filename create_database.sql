@@ -1,10 +1,10 @@
--- Crear la base de datos
+-- Create the database
 CREATE DATABASE IF NOT EXISTS crudPersona;
 
--- Usar la base de datos
+-- Use the database
 USE crudPersona;
 
--- Crear la tabla persona
+-- Create the persona table
 CREATE TABLE IF NOT EXISTS persona (
     idPersona INT AUTO_INCREMENT PRIMARY KEY,
     dni VARCHAR(20) UNIQUE NOT NULL,
@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS persona (
     admitido VARCHAR(2) NOT NULL
 );
 
--- Insertar algunos datos de ejemplo
+-- Insert some sample data
 INSERT INTO persona (dni, nombre, apellido, facultad, puntaje, admitido) VALUES
 ('12345678', 'Juan', 'Perez', 'Ingenieria', 400, 'SI'),
 ('87654321', 'Maria', 'Gomez', 'Artes', 380, 'SI'),

@@ -1,10 +1,10 @@
 /**
- * Clase que representa la interfaz gráfica de usuario para la gestión de personas.
+ * Class that represents the graphical user interface for managing people.
  * 
- * Esta clase extiende JFrame y proporciona una interfaz visual para realizar
- * operaciones CRUD (Create, Read, Update, Delete) sobre personas.
- * Incluye campos de entrada para los datos de la persona y botones para
- * guardar, editar, actualizar y eliminar registros.
+ * This class extends JFrame and provides a visual interface for performing
+ * CRUD (Create, Read, Update, Delete) operations on people.
+ * It includes input fields for the person's data and buttons to
+ * save, edit, update, and delete records.
  */
 package presentation;
 
@@ -16,14 +16,14 @@ import service.PersonaService;
 
 public class PersonaFrame extends javax.swing.JFrame {
 
-    // Servicios y objetos para la gestión de personas
+    // Services and objects for managing people
     PersonaService personaService;
     Persona persona;
     
     /**
-     * Constructor de la clase PersonaFrame.
-     * Inicializa los componentes de la interfaz gráfica y configura
-     * el estado inicial de la ventana.
+     * Constructor of the PersonaFrame class.
+     * Initializes the graphical interface components and sets up
+     * the initial state of the window.
      */
     public PersonaFrame() {
         initComponents();
@@ -37,7 +37,7 @@ public class PersonaFrame extends javax.swing.JFrame {
     }
     
     /**
-     * Muestra los registros de personas en la tabla.
+     * Displays the person records in the table.
      */
     private void mostrarRegistros()
     {
@@ -46,27 +46,27 @@ public class PersonaFrame extends javax.swing.JFrame {
     }
     
     /**
-     * Muestra un mensaje de éxito al usuario.
+     * Displays a success message to the user.
      * 
-     * @param mensaje Mensaje a mostrar
+     * @param mensaje Message to display
      */
     private void mostrarMensajeOK(String mensaje)
     {
-        JOptionPane.showMessageDialog(this,mensaje,"Mensaje",JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this,mensaje,"Message",JOptionPane.INFORMATION_MESSAGE);
     }
     
     /**
-     * Muestra un mensaje de error al usuario.
+     * Displays an error message to the user.
      * 
-     * @param mensaje Mensaje de error a mostrar
+     * @param mensaje Error message to display
      */
     private void mostrarMensajeError(String mensaje)
     {
-        JOptionPane.showMessageDialog(this,mensaje,"Mensaje",JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(this,mensaje,"Message",JOptionPane.ERROR_MESSAGE);
     }
     
     /**
-     * Limpia todos los campos de texto de la interfaz.
+     * Clears all the text fields in the interface.
      */
     private void limpiar(){
         txtIdPersona.setText("");
@@ -79,7 +79,7 @@ public class PersonaFrame extends javax.swing.JFrame {
     }
     
     /**
-     * Deshabilita el botón de actualización.
+     * Disables the update button.
      */
     private void deshabilitarBoton(){
         
@@ -89,7 +89,7 @@ public class PersonaFrame extends javax.swing.JFrame {
    
     
     /**
-     * Habilita el botón de actualización.
+     * Enables the update button.
      */
     private void habilitarBoton(){
         
@@ -129,16 +129,16 @@ public class PersonaFrame extends javax.swing.JFrame {
         jLabel1.setText("DNI:");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setText("Nombres:");
+        jLabel2.setText("First name:");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setText("Apellidos:");
+        jLabel3.setText("Last name:");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel4.setText("Facultad:");
+        jLabel4.setText("Faculty:");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel5.setText("Puntaje:");
+        jLabel5.setText("Score:");
 
         txtDni.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -210,28 +210,28 @@ public class PersonaFrame extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        btnGuardar.setText("Guardar");
+        btnGuardar.setText("Save");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarActionPerformed(evt);
             }
         });
 
-        btnEditar.setText("Editar");
+        btnEditar.setText("Edit");
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEditarActionPerformed(evt);
             }
         });
 
-        btnActualizar.setText("Actualizar");
+        btnActualizar.setText("Update");
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnActualizarActionPerformed(evt);
             }
         });
 
-        btnEliminar.setText("Eliminar");
+        btnEliminar.setText("Delete");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarActionPerformed(evt);
@@ -322,7 +322,7 @@ public class PersonaFrame extends javax.swing.JFrame {
           
         if(resp.equalsIgnoreCase("ok"))
         {
-         mostrarMensajeOK("Se registro correctamente");
+         mostrarMensajeOK("Record saved successfully");
          
          mostrarRegistros();
          
@@ -336,14 +336,14 @@ public class PersonaFrame extends javax.swing.JFrame {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
           if (txtDni.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Ingrese un DNI para eliminar a una persona");
+            JOptionPane.showMessageDialog(this, "Enter a DNI to delete a person");
         }else{
             if (personaService.buscar(txtDni.getText()) == null) {
-                JOptionPane.showMessageDialog(this, "No existe la persona con el dni: " + txtDni.getText());
+                JOptionPane.showMessageDialog(this, "No person exists with DNI: " + txtDni.getText());
             }else{
                 String resp = personaService.eliminar(txtDni.getText());
                 if (resp.equalsIgnoreCase("ok")) {
-                    mostrarMensajeOK("Se elimino correctamente");
+                    mostrarMensajeOK("Record deleted successfully");
                     mostrarRegistros();
                     limpiar();
                 }else{
@@ -360,11 +360,11 @@ public class PersonaFrame extends javax.swing.JFrame {
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
          if (txtDni.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Ingrese un dni valido");
+            JOptionPane.showMessageDialog(this, "Enter a valid DNI");
         }else{
             persona = personaService.buscar(txtDni.getText());
             if (persona == null) {
-                JOptionPane.showMessageDialog(this, "No existe la persona con el dni " + txtDni.getText());
+                JOptionPane.showMessageDialog(this, "No person exists with DNI " + txtDni.getText());
             }else{
                 txtIdPersona.setText(String.valueOf(persona.getIdPersona()));
                 txtDni.setText(persona.getDni());

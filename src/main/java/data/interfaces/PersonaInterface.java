@@ -1,9 +1,9 @@
 /**
- * Interfaz que define los métodos para operaciones CRUD (Create, Read, Update, Delete)
- * sobre objetos Persona en la base de datos.
+ * Interface that defines the methods for CRUD (Create, Read, Update, Delete)
+ * operations on Persona objects in the database.
  * 
- * Esta interfaz será implementada por la clase PersonaDAO para proporcionar
- * la funcionalidad de acceso a datos.
+ * This interface is implemented by the PersonaDAO class to provide
+ * the data access functionality.
  */
 package data.interfaces;
 
@@ -13,41 +13,41 @@ import java.util.List;
 public interface PersonaInterface {
     
     /**
-     * Inserta una nueva persona en la base de datos.
+     * Inserts a new person into the database.
      * 
-     * @param obj Persona a insertar
-     * @return true si la inserción fue exitosa, false en caso contrario
+     * @param obj Persona to insert
+     * @return true if the insertion was successful, false otherwise
      */
     public boolean insertar(Persona obj);
     
     /**
-     * Obtiene una lista de todas las personas almacenadas en la base de datos.
+     * Returns a list of all the people stored in the database.
      * 
-     * @return Lista de objetos Persona
+     * @return List of Persona objects
      */
     public List<Persona> listar();
     
     /**
-     * Busca una persona en la base de datos por su DNI.
+     * Looks up a person in the database by DNI.
      * 
-     * @param dni DNI de la persona a buscar
-     * @return Objeto Persona encontrado, o null si no se encuentra
+     * @param dni DNI of the person to look up
+     * @return Persona object found, or null if not found
      */
     public Persona buscar(String dni);
     
     /**
-     * Actualiza la información de una persona existente en la base de datos.
+     * Updates the information of an existing person in the database.
      * 
-     * @param obj Persona con la información actualizada
-     * @return true si la actualización fue exitosa, false en caso contrario
+     * @param obj Persona with the updated information
+     * @return true if the update was successful, false otherwise
      */
     public boolean actualizar(Persona obj);
     
     /**
-     * Elimina una persona de la base de datos por su DNI.
+     * Deletes a person from the database by DNI.
      * 
-     * @param dni DNI de la persona a eliminar
-     * @return true si la eliminación fue exitosa, false en caso contrario
+     * @param dni DNI of the person to delete
+     * @return true if the deletion was successful, false otherwise
      */
     public boolean eliminar(String dni);
     

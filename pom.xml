@@ -11,23 +11,23 @@
     <packaging>jar</packaging>
 
     <properties>
-        <maven.compiler.source>11</maven.compiler.source> <!-- Ajusta a tu versión de Java -->
+        <maven.compiler.source>11</maven.compiler.source> <!-- Adjust to your Java version -->
         <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>
-        <!-- Dependencia para el conector de MySQL -->
+        <!-- Dependency for the MySQL connector -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.33</version> <!-- Usa la versión más reciente estable -->
+            <version>8.0.33</version> <!-- Use the latest stable version -->
         </dependency>
     </dependencies>
 
     <build>
         <plugins>
-            <!-- Plugin para crear un JAR ejecutable -->
+            <!-- Plugin to build an executable JAR -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
